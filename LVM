@@ -1,0 +1,36 @@
+early ppl used standard partition but now we use LVM
+sudo yum install -y lvm2 -> install it
+pvcreate /dev/nvme1n1
+pvs
+vgcreate myvg /dev/sdb
+vgs
+lvcreate -L +8g -n mylv myvg
+lvs
+mkfs.ext4 /dev/myvg/mylv
+blkid
+mkdir /app1
+mount -t ext4 /dev/myvg/mylv /app1
+df -hT /app1
+ls -l /app1
+echo "hi welcome to lvm" > /app1/lvm.data
+ls -l /app1
+cat /app1/lvm.data
+now add new disk to extend lvm
+pvcreate /dev/nvme2n1
+vgextend myvg /dev/sdc
+lvextend -L +5G -n /dev/myvg/mylv -r
+
+umount /app1
+lvremove /dev/myvg/mylv
+vgremove myvg
+pvremove /dev/sdb
+pvremove /dev/sdc
+
+verify by pvs vgs lvs
+
+if want to do permanent mounting so this
+vi /etc/fstab
+/dev/myvg/mylv /app1 ext4 defaults 0 0
+init 6 
+restart terminal again can login, verify by lsblk
+dynamically we can increase the size bt cannot reduce so in prod always increase it time to time 
