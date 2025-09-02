@@ -1,0 +1,134 @@
+adding user -> useradd suman
+adding group -> groupadd devops
+verifying user -> grep suman /etc/passwd or id -a suman
+verifying group -> grep devops /etc/group
+adding user to multiple groups -> gpasswd -a suman azure, here 1st you need to create group azure by groupadd azure
+he is already part of devops group now he became a member of azure also
+modifing the user to be part of another group by removing from current group -> usermod suman -g devops
+
+
+
+for creating folder inside a folder -> mkdir -p /tmp/f1/f2/f3/f4
+for checking conent -> ls -l /tmp/f1/f2/f3/f4
+for checking information -> ls -ld /tmp/f1/f2/f3/f4
+
+for copying files from 1 folder to another
+mkdir /tmp/src
+mkdir /tmp/dest
+ls -ld /tmp/src , ls -l /tmp/src
+ls -ld /tmp/dest , ls -l /tmp/dest
+
+touch /tmp/src/file{1..5}.txt
+ls -l /tmp/src
+cp /tmp/src/file2.txt /tmp/dest
+ls -l /tmp/dest   -> file2 is avail in both src and dest folders
+cp /tmp/src/file* /tmp/dest  -> for copying all the files
+
+
+for moving files from 1 folder to another folder
+mv /tmp/src/file2.txt /tmp/dest
+verify -> ls -l /tmp/src -> file2.txt absent
+ls -l /tmp/dest -> file2.txt present
+
+
+for removing files in a folder  -> 2 ways 
+cd /tmp/dest
+pwd
+rm -rf file2.txt
+or
+rm -rf /tmp/dest/file2.txt 
+verify after deletion
+
+for changing the ownership of the folder
+chown suman:devops /tmp/src 
+here you need to create user and group 1st 
+for changing ownership and applying the ownership to files inside folder
+chown suman:devops /tmp/src -R
+
+
+for changing permissions at folder level 
+ls -l /tmp/src
+chmod 777 /tmp/src -> applied only at folder level
+for applying the permission change to files also
+chmod 777 /tmp/src -R
+
+
+for identifing the location or where the file exists
+touch mysore.txt
+touch MYSORE.TXT
+
+find / -iname mysore.txt -> will display both the files
+find / -name mysore.txt -> will display only mysore.txt
+find / -name MYSORE.TXT -> will display only MYSORE.TXT
+i stands for ignoring the case sensitivity
+
+
+for hiding the files 
+
+adding . in front of file makes it hidden and giving la will make us to see hidden files
+touch /tmp/.rcb.txt
+ls -l /tmp/  -> rcb.txt not reflected 
+ls -la /tmp/ -> rcb.txt reflected
+
+for deleting the hidden files 
+rm -rf /tmp/.rcb.txt
+
+
+
+---> performing operations on file
+
+to save and exit -> :wq!
+to exit without saving -> :q!
+
+vi cars.txt
+verna
+vento
+rapid
+octavia
+laura
+superb
+320d
+contessa
+baleno
+VERNA
+
+
+to see content -> cat cars.txt
+to see content along with lines -> cat -n cars.txt, cat -n cars.txt|wc -l
+to identify particular word in a file aloung with line -> cat -n cars.txt|grep -i verna
+to see how many times the searched word exists -> cat -n cars.txt|grep -i verna|wc -l
+to print 1st 5 lines -> cat -n cars.txt | head -5
+to print last 5 lines -> cat -n cars.txt | tail -5
+to print particular line between selected lines -> cat -n cars.txt | head -5| tail -3| grep -i 2
+to print multiple lines between selected lines -> cat -n cars.txt | head -5 | tail  -3 | grep -e "3\|4"
+
+
+to check list of commands executed -> history
+more cars.txt -> space to get content in page wise, enter to get in line wise
+
+
+----> vi editors
+i = insert mode
+esc = esc mode
+gg = start of page
+shift+g = end of page
+0 =  start of line
+shift+$ = end of line
+: set nu = content with line number
+y2y =  copying, 2 specifies no of lines 
+p = pasting the content 
+d9d =  deleting the content , 9 specifies no of lines
+u = undo 
+cnt+r = redo
+# at start of line = will make it as commented line
+for replcing a word -> :%s/contessa/cambry/g  , contessa is existing word and cambry is the word of replacement and g is global
+
+you should take the backup of the file you are edting for safety 
+cp cars.txt cars.txt-1-2-3
+in case any issues with cars.txt and you are not able to restore changes then do copy from backup to it like
+cp cars.txt-1-2-3 cars.txt
+now both cars.txt and cars.txt-1-2-3 will be having content
+
+
+
+
