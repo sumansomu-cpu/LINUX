@@ -1,0 +1,45 @@
+password based
+key based
+you should always give and take public key , can generate keys via putty gen 
+
+
+groupadd devops
+useradd -u 1002 -g devops -c "admin user" -s /bin/bash -d /home/raju raju
+id -a raju
+grep raju /etc/passwd
+grep devops /etc/group
+mkdir /home/raju/.ssh
+touch /home/raju/.ssh/authorized_keys
+mkdir /home/raju/.ssh
+touch /home/raju/.ssh/authorized_keys
+echo "give his public key" > /home/raju/.ssh/authorized_keys
+chmod 600 /home/raju/.ssh/authorized_keys
+chmod 700 /home/raju/.ssh
+chown raju:devops -R /home/raju/.ssh
+chmod 640 /etc/sudoers.d/90-cloud-init-users   
+vi /etc/sudoers.d/90-cloud-init-users  -> giving entry for user to switch as root user
+give raju entry here 
+cat /etc/sudoers.d/90-cloud-init-users
+
+
+
+
+password based
+useradd suresh
+groupadd devops
+usermod suresh -g devops
+id -a suresh
+passwd suresh -> give password
+vi /etc/ssh/sshd_config  -> enable passowrd based authentication to yes
+grep passwordauthentication /etc/ssh/sshd_config
+systemctl restart sshd
+chmod 640 /etc/sudoers.d/90-cloud-init-users
+vi chmod 640 /etc/sudoers.d/90-cloud-init-users
+cat /etc/sudoers.d/90-cloud-init-users
+
+can login 
+
+
+
+
+
