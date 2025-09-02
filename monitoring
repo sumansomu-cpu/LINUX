@@ -1,0 +1,20 @@
+if any one saying app is down or lazy loading 
+take domain name,lbcr,target group,ec2,health check
+login to server -> install apache
+netstat -nap|grep :80 -> in place of 80 can given exposed port no, it should be in listening state
+ps -ef -> gives all the list ofg process running 
+ps -ef|grep -i PID , which was given by netstat -nap|grep :80 -> by this we wil come to know who is consuming the port
+every process will have its own PID
+free -g, free -m -> shows you free space in storage via gb and mb size
+top command -> like task manager will tell us who is consuming what mem and cpu -> shift+m , shift+p
+once you get to know about PID you inform about that PID to app team and tell me to handle the situation an restart the app if they are asking us to kill take official mail and delete 
+else you have to loose your job 
+kill -9 PID
+cat /proc/meminfo -> gives system mem info
+cat /proc/cpuinfo -> gives system cpu ifo
+vmstat 2 3 -> 2 rep seconds and 3 rep itterations
+cat /etc/login.defs -> userid you can give
+in case if every thing is fine and still facing issue the increase the ipos of disk attached via console -> iostat /dev/diskname it should be in idle state
+
+
+
